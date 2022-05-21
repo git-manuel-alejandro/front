@@ -7,3 +7,9 @@
     height: 100%;
     z-index: 9999;
 }
+
+.img-avatar{
+    height: 200px;
+    width: 200px;
+
+}
