@@ -73,7 +73,7 @@ export class UsuariosComponent implements OnInit, OnDestroy {
     if (termino.length === 0) {
       return this.usuarios = this.usuariosTemp
     } else {
-      this.busquedaService.buscar('usuarios', termino).subscribe((resultados) => {
+      this.busquedaService.buscar('usuarios', termino).subscribe((resultados: Usuario[]) => {
         this.usuarios = resultados
       })
     }
@@ -127,7 +127,7 @@ export class UsuariosComponent implements OnInit, OnDestroy {
 
   cambiarRole(usuario: Usuario) {
     this.usuarioService.guardarUsuario(usuario).subscribe((resp) => {
-      console.log(resp)
+      // console.log(resp)
     })
 
   }

@@ -5,6 +5,7 @@ import { HospitalService } from '../../../services/hospital.service';
 import { Hospital } from '../../../interfaces/hospitales-form.interface';
 import { ModalImagenService } from 'src/app/services/modal-imagen.service';
 import { Subscription } from 'rxjs';
+import { BusquedasService } from 'src/app/services/busquedas.service';
 
 
 
@@ -15,11 +16,13 @@ import { Subscription } from 'rxjs';
 })
 export class HospitalesComponent implements OnInit, OnDestroy {
   public imgSubs: Subscription
+  public usuariosTemp: Hospital[] = []
 
 
   constructor(
     private hospitalService: HospitalService,
-    public modalImagenService: ModalImagenService
+    public modalImagenService: ModalImagenService,
+    private busquedaService: BusquedasService,
   ) { }
 
   public hospitales = []
@@ -112,5 +115,16 @@ export class HospitalesComponent implements OnInit, OnDestroy {
     this.modalImagenService.abrirModal('hospitales', hospital._id, hospital.img)
 
 
+  }
+
+  buscar(termino: string) {
+
+    if (termino.length === 0) {
+      this.readHospitales()
+    } else {
+      this.busquedaService.buscar('hospitales', termino).subscribe((resultados) => {
+        this.hospitales = resultados
+      })
+    }
   }
 }
