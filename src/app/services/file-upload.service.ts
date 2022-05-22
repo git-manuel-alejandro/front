@@ -28,7 +28,7 @@ export class FileUploadService {
 
       })
 
-      console.log(resp)
+      // console.log(resp)
       const data = await resp.json()
       if (data.ok) {
         return data.nombreArchivo
